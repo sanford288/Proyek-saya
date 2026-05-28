@@ -1157,6 +1157,171 @@ ESPPlayerBtn.MouseButton1Click:Connect(function()
 	end
 end)
 
+-- CHASE BOOST 😈
+
+local ChaseBoostBtn = Instance.new("TextButton")
+ChaseBoostBtn.Parent = PvPFrame
+
+ChaseBoostBtn.Size = UDim2.new(1,-40,0,50)
+ChaseBoostBtn.Position = UDim2.new(0,20,0,250)
+
+ChaseBoostBtn.BackgroundColor3 =
+Color3.fromRGB(255,120,120)
+
+ChaseBoostBtn.Text =
+"Chase Boost"
+
+ChaseBoostBtn.Font =
+Enum.Font.GothamBold
+
+ChaseBoostBtn.TextSize = 20
+
+ChaseBoostBtn.TextColor3 =
+Color3.fromRGB(255,255,255)
+
+local ChaseBoostCorner =
+Instance.new("UICorner")
+
+ChaseBoostCorner.Parent =
+ChaseBoostBtn
+
+ChaseBoostCorner.CornerRadius =
+UDim.new(0,15)
+
+-- SWITCH 😈
+
+local ChaseBoostSwitch =
+Instance.new("Frame")
+
+ChaseBoostSwitch.Parent =
+ChaseBoostBtn
+
+ChaseBoostSwitch.Size =
+UDim2.new(0,50,0,25)
+
+ChaseBoostSwitch.Position =
+UDim2.new(1,-75,0.5,-12)
+
+ChaseBoostSwitch.BackgroundColor3 =
+Color3.fromRGB(60,60,60)
+
+local ChaseBoostSwitchCorner =
+Instance.new("UICorner")
+
+ChaseBoostSwitchCorner.Parent =
+ChaseBoostSwitch
+
+ChaseBoostSwitchCorner.CornerRadius =
+UDim.new(1,0)
+
+-- CIRCLE 😈
+
+local ChaseBoostCircle =
+Instance.new("Frame")
+
+ChaseBoostCircle.Parent =
+ChaseBoostSwitch
+
+ChaseBoostCircle.Size =
+UDim2.new(0,21,0,21)
+
+ChaseBoostCircle.Position =
+UDim2.new(0,2,0.5,-10)
+
+ChaseBoostCircle.BackgroundColor3 =
+Color3.fromRGB(255,255,255)
+
+local ChaseBoostCircleCorner =
+Instance.new("UICorner")
+
+ChaseBoostCircleCorner.Parent =
+ChaseBoostCircle
+
+ChaseBoostCircleCorner.CornerRadius =
+UDim.new(1,0)
+
+-- STATUS 😈
+
+local ChaseBoost = false
+
+-- LOOP 😈
+
+RunService:BindToRenderStep(
+	"ZETTCHASEBOOST",
+	1,
+	function()
+
+		if not ChaseBoost then
+			return
+		end
+
+		local Character =
+		LocalPlayer.Character
+
+		if not Character then
+			return
+		end
+
+		if Character:GetAttribute(
+			"IsPvPPocong"
+		) ~= true then
+			return
+		end
+
+		local Humanoid =
+		Character:FindFirstChild(
+			"Humanoid"
+		)
+
+		if Humanoid
+		and Humanoid.WalkSpeed > 0
+		then
+			Humanoid.WalkSpeed =
+			35
+		end
+	end
+)
+
+-- TOGGLE 😈
+
+ChaseBoostBtn.MouseButton1Click
+:Connect(function()
+
+	ChaseBoost =
+	not ChaseBoost
+
+	if ChaseBoost then
+
+		ChaseBoostSwitch
+		.BackgroundColor3 =
+		Color3.fromRGB(
+			255,120,120
+		)
+
+		ChaseBoostCircle
+		.Position =
+		UDim2.new(
+			0,27,
+			0.5,-10
+		)
+
+	else
+
+		ChaseBoostSwitch
+		.BackgroundColor3 =
+		Color3.fromRGB(
+			60,60,60
+		)
+
+		ChaseBoostCircle
+		.Position =
+		UDim2.new(
+			0,2,
+			0.5,-10
+		)
+	end
+end)
+
 local KillerTitle = Instance.new("TextLabel")
 KillerTitle.Parent = PvPFrame
 
@@ -1889,9 +2054,15 @@ ItemBtn.MouseButton1Click:Connect(function()
 			
 			
 				
-				if v.Name == "Kacamata"
-				or v.Name == "Wristwatch"
-				or v.Name == "Glasses" then
+				if v.Name == "Wallet"
+                or v.Name == "Wristwatch"
+                or v.Name == "RedPen"
+                or v.Name == "NameCard"
+                or v.Name == "IdCard"
+                or v.Name == "MedicalReportA"
+                or v.Name == "MedicalReportB"
+                or v.Name == "MedicalReportC"
+                or v.Name == "Glasses" then
 					
 					CreateESP(v)
 					
@@ -1905,9 +2076,15 @@ ItemBtn.MouseButton1Click:Connect(function()
 
 			
 				
-				if v.Name == "Kacamata"
-				or v.Name == "Wristwatch"
-				or v.Name == "Glasses" then
+				if v.Name == "Wallet"
+                or v.Name == "Wristwatch"
+                or v.Name == "RedPen"
+                or v.Name == "NameCard"
+                or v.Name == "IdCard"
+                or v.Name == "MedicalReportA"
+                or v.Name == "MedicalReportB"
+                or v.Name == "MedicalReportC"
+                or v.Name == "Glasses" then
 					
 					task.wait(0.1)
 					
@@ -1938,6 +2115,176 @@ ItemBtn.MouseButton1Click:Connect(function()
 				v:Destroy()
 				
 			end
+		end
+	end
+end)
+
+-- FAST INTERACT 😈
+
+local FastInteractBtn =
+Instance.new("TextButton")
+
+FastInteractBtn.Parent =
+MainFrame -- ganti parent
+
+FastInteractBtn.Size =
+UDim2.new(1,-40,0,50)
+
+FastInteractBtn.Position =
+UDim2.new(0,20,0,115)
+
+FastInteractBtn.BackgroundColor3 =
+Color3.fromRGB(255,120,120)
+
+FastInteractBtn.Text =
+"Fast Interact"
+
+FastInteractBtn.Font =
+Enum.Font.GothamBold
+
+FastInteractBtn.TextSize = 20
+
+FastInteractBtn.TextColor3 =
+Color3.fromRGB(255,255,255)
+
+local FastCorner =
+Instance.new("UICorner")
+
+FastCorner.Parent =
+FastInteractBtn
+
+FastCorner.CornerRadius =
+UDim.new(0,15)
+
+-- SWITCH 😈
+
+local FastSwitch =
+Instance.new("Frame")
+
+FastSwitch.Parent =
+FastInteractBtn
+
+FastSwitch.Size =
+UDim2.new(0,50,0,25)
+
+FastSwitch.Position =
+UDim2.new(1,-75,0.5,-12)
+
+FastSwitch.BackgroundColor3 =
+Color3.fromRGB(60,60,60)
+
+local FastSwitchCorner =
+Instance.new("UICorner")
+
+FastSwitchCorner.Parent =
+FastSwitch
+
+FastSwitchCorner.CornerRadius =
+UDim.new(1,0)
+
+-- CIRCLE 😈
+
+local FastCircle =
+Instance.new("Frame")
+
+FastCircle.Parent =
+FastSwitch
+
+FastCircle.Size =
+UDim2.new(0,21,0,21)
+
+FastCircle.Position =
+UDim2.new(0,2,0.5,-10)
+
+FastCircle.BackgroundColor3 =
+Color3.fromRGB(255,255,255)
+
+local FastCircleCorner =
+Instance.new("UICorner")
+
+FastCircleCorner.Parent =
+FastCircle
+
+FastCircleCorner.CornerRadius =
+UDim.new(1,0)
+
+-- STATUS 😈
+
+local FastInteract = false
+local FastConnection
+
+-- TOGGLE 😈
+
+FastInteractBtn.MouseButton1Click:Connect(function()
+
+	FastInteract =
+	not FastInteract
+
+	if FastInteract then
+
+		FastSwitch.BackgroundColor3 =
+		Color3.fromRGB(
+			255,120,120
+		)
+
+		FastCircle.Position =
+		UDim2.new(
+			0,27,
+			0.5,-10
+		)
+
+		-- APPLY 😈
+
+		local function Apply()
+
+			for _,v in ipairs(
+				workspace:GetDescendants()
+			) do
+
+				if v:IsA(
+					"ProximityPrompt"
+				) then
+
+					v.HoldDuration = 0
+
+				end
+			end
+		end
+
+		Apply()
+
+		FastConnection =
+		workspace.DescendantAdded
+		:Connect(function(v)
+
+			if v:IsA(
+				"ProximityPrompt"
+			) then
+
+				v.HoldDuration = 0
+
+			end
+		end)
+
+	else
+
+		FastSwitch.BackgroundColor3 =
+		Color3.fromRGB(
+			60,60,60
+		)
+
+		FastCircle.Position =
+		UDim2.new(
+			0,2,
+			0.5,-10
+		)
+
+		if FastConnection then
+			FastConnection
+			:Disconnect()
+
+			FastConnection =
+			nil
 		end
 	end
 end)
