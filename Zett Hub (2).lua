@@ -2125,7 +2125,7 @@ local FastInteractBtn =
 Instance.new("TextButton")
 
 FastInteractBtn.Parent =
-MainFrame -- ganti parent
+Content -- ganti parent
 
 FastInteractBtn.Size =
 UDim2.new(1,-40,0,50)
