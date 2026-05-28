@@ -2131,7 +2131,7 @@ FastInteractBtn.Size =
 UDim2.new(1,-40,0,50)
 
 FastInteractBtn.Position =
-UDim2.new(0,20,0,300)
+UDim2.new(0,20,0,0)
 
 FastInteractBtn.BackgroundColor3 =
 Color3.fromRGB(255,120,120)
