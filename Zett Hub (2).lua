@@ -2125,13 +2125,13 @@ local FastInteractBtn =
 Instance.new("TextButton")
 
 FastInteractBtn.Parent =
-Content -- ganti parent
+Content
 
 FastInteractBtn.Size =
 UDim2.new(1,-40,0,50)
 
 FastInteractBtn.Position =
-UDim2.new(0,20,0,0)
+UDim2.new(0,20,0,300)
 
 FastInteractBtn.BackgroundColor3 =
 Color3.fromRGB(255,120,120)
@@ -2213,16 +2213,67 @@ UDim.new(1,0)
 local FastInteract = false
 local FastConnection
 
+-- SIMPAN HOLD ASLI 😈
+
+local OriginalHold = {}
+
+-- APPLY 😈
+
+local function ApplyFastInteract()
+
+	for _,v in ipairs(
+		workspace:GetDescendants()
+	) do
+
+		if v:IsA(
+			"ProximityPrompt"
+		) then
+
+			-- simpan hold asli
+			if OriginalHold[v]
+			== nil then
+
+				OriginalHold[v] =
+				v.HoldDuration
+
+			end
+
+			v.HoldDuration = 0
+		end
+	end
+end
+
+-- BALIKIN NORMAL 😈
+
+local function RestoreFastInteract()
+
+	for Prompt,
+	Hold in pairs(
+		OriginalHold
+	) do
+
+		if Prompt
+		and Prompt.Parent then
+
+			Prompt.HoldDuration =
+			Hold
+		end
+	end
+end
+
 -- TOGGLE 😈
 
-FastInteractBtn.MouseButton1Click:Connect(function()
+FastInteractBtn
+.MouseButton1Click
+:Connect(function()
 
 	FastInteract =
 	not FastInteract
 
 	if FastInteract then
 
-		FastSwitch.BackgroundColor3 =
+		FastSwitch
+		.BackgroundColor3 =
 		Color3.fromRGB(
 			255,120,120
 		)
@@ -2233,25 +2284,9 @@ FastInteractBtn.MouseButton1Click:Connect(function()
 			0.5,-10
 		)
 
-		-- APPLY 😈
+		ApplyFastInteract()
 
-		local function Apply()
-
-			for _,v in ipairs(
-				workspace:GetDescendants()
-			) do
-
-				if v:IsA(
-					"ProximityPrompt"
-				) then
-
-					v.HoldDuration = 0
-
-				end
-			end
-		end
-
-		Apply()
+		-- prompt baru 😈
 
 		FastConnection =
 		workspace.DescendantAdded
@@ -2261,14 +2296,22 @@ FastInteractBtn.MouseButton1Click:Connect(function()
 				"ProximityPrompt"
 			) then
 
-				v.HoldDuration = 0
+				if OriginalHold[v]
+				== nil then
 
+					OriginalHold[v] =
+					v.HoldDuration
+
+				end
+
+				v.HoldDuration = 0
 			end
 		end)
 
 	else
 
-		FastSwitch.BackgroundColor3 =
+		FastSwitch
+		.BackgroundColor3 =
 		Color3.fromRGB(
 			60,60,60
 		)
@@ -2279,7 +2322,10 @@ FastInteractBtn.MouseButton1Click:Connect(function()
 			0.5,-10
 		)
 
+		RestoreFastInteract()
+
 		if FastConnection then
+
 			FastConnection
 			:Disconnect()
 
@@ -2288,4 +2334,3 @@ FastInteractBtn.MouseButton1Click:Connect(function()
 		end
 	end
 end)
-
